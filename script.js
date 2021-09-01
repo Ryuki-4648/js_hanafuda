@@ -12,43 +12,47 @@ $.ajax({
 
     // テーブルに出力
     var tBody = $('#tBody');
-
-    $.each(data.items, function(index, value){
-      var tr = '<tr>';
-      var tdMonth= '<td>' + value.month + '月' + '</td>';
-      var tdName = '<td>' + value.name + '</td>';
-      var tdScore = '<td>' + value.score + '点' + '</td>';
-      var trClose = '</tr>';
-      tBody.append(tr + tdMonth + tdName + tdScore + trClose);
+    $.each(data.items, function(i, v){
+      var tdMonth= '<td>' + v.month + '月' + '</td>';
+      var tdName = '<td>' + v.name + '</td>';
+      var tdScore = '<td>' + v.score + '点' + '</td>';
+      tBody.append('<tr>' + tdMonth + tdName + tdScore + '</tr>');
     });
 
     // セレクトボックス
-    $('#select01').on('change', function(){
+    $('#select01, #select02').on('change', function(){
       // 選択した値を取得
       var select01 = $('#select01 option:selected').text();
       var value01 = $('#select01').val();
       var select02 = $('#select02 option:selected').text();
       var value02 = $('#select02').val();
     
-      $.each($('#tBody tr'), function (index, element) {
+      $.each($('#tBody tr'), function (index, elem) {
         if (value01 == "") {
-          $(element).css('display', '');
+          $(elem).css('display', '');
+          return true;
+        }
+        if (value02 == "") {
+          $(elem).css('display', '');
           return true;
         }
         
-        var row_text = $(element).text();
+        var row_text = $(elem).text();
         if (row_text.indexOf(select01) != -1) { // 月 一致した場合
-          //$(element).css('display', '');
           if (row_text.indexOf(select02) != -1) { // 点 一致した場合
-            $(element).css('display', '');
+            $(elem).css('display', '');
           } else {
-            $(element).css('display', 'none');
+            $(elem).css('display', 'none');
+          }
+        } else if (row_text.indexOf(select02) != -1) { // 点 一致した場合
+          if (row_text.indexOf(select01) != -1) { // 月 一致した場合
+            $(elem).css('display', '');
+          } else {
+            $(elem).css('display', 'none');
           }
         } else {
-          $(element).css('display', 'none');
+          $(elem).css('display', 'none');
         }
-
-        // 値が見つからなかったら-1を返す。
       });
     });
 

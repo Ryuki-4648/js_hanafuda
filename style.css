@@ -12,6 +12,7 @@ body, html {
 
 body {
   color: #333;
+  font-family: "Noto Sans JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", "Meiryo", "Yu Gothic", "YuGothic", "Helvetica Neue", "Helvetica", "sans-serif";
 }
 
 
@@ -46,6 +47,9 @@ h1 {
   height: 60px;
   border: 3px solid rgb(29, 29, 29);
   margin: 0 auto 80px;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  font-family: "Noto Sans JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", "Meiryo", "Yu Gothic", "YuGothic", "Helvetica Neue", "Helvetica", "sans-serif";
 }
 
 .selectBox:first-child {
@@ -116,6 +120,11 @@ form select {
 
 #msg.show {
   display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 auto 100px;
+  letter-spacing: 0.1em;
 }
 
 #msg.active {
@@ -130,15 +139,17 @@ form select {
   text-align: center;
 }
 #reset {
-  width: 350px;
+  width: 400px;
   margin: 0 auto;
-  border: 3px solid rgb(29, 29, 29);
-  height: 60px;
+  border: 4px solid rgb(29, 29, 29);
+  height: 70px;
   cursor: pointer;
-  font-weight: bold;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   background-color: #f3482e;
   transition: all .3s;
+  font-size: 16px;
+  box-sizing: border-box;
+  font-family: "Noto Sans JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", "Meiryo", "Yu Gothic", "YuGothic", "Helvetica Neue", "Helvetica", "sans-serif";
 }
 
 #reset:hover {
@@ -159,4 +170,50 @@ form select {
 
 .nogizaka {
   background-color: #d8c5e8;
+}
+
+
+@media screen and (max-width: 1024px) {
+  h1 {
+    margin: 0 auto 30px;
+  }
+
+  .content {
+    padding: 40px 0;
+  }
+
+  .inner {
+    width: 90%;
+  }
+
+  .wrap {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .selectBox {
+    width: 100%;
+    margin: 0 auto 40px;
+  }
+  .selectBox:first-child {
+    margin: 0 auto 30px;
+  }
+
+  .hanafuda .c-tbl th:last-child .sort, .nogizaka .c-tbl th:nth-child(2) .sort {
+    right: 1%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .c-tbl th .sort span {
+    margin: 0 3px;
+    width: 100%;
+  }
+
+  #tbl {
+    margin: 0 auto 50px;
+  }
+
+  #reset {
+    width: 100%;
+  }
 }

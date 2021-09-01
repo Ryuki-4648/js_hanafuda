@@ -107,11 +107,15 @@ form select {
 }
 
 #tBody tr.hidden {
-  display: none;
+  display: none!important;
 }
 
 #msg {
   display: none;
+}
+
+#msg.show {
+  display: block;
 }
 
 #msg.active {

@@ -1,0 +1,158 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #333;
+}
+
+
+.content {
+  padding: 80px 0;
+}
+
+.hanafuda {
+  background-color: #8accda;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 0 auto 80px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.inner {
+  width: 1024px;
+  margin: 0 auto;
+}
+.wrap {
+  display: flex;
+  justify-content: center;
+  width: 800px;
+  margin: 0 auto;
+}
+.selectBox {
+  width: 50%;
+  height: 60px;
+  border: 3px solid rgb(29, 29, 29);
+  margin: 0 auto 80px;
+}
+
+.selectBox:first-child {
+  margin: 0 30px 0 0;
+}
+
+.c-tbl {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.c-tbl th {
+  border-top: 4px solid rgb(29, 29, 29);
+  padding: 20px 0;
+  width: 30%;
+  text-align: center;
+}
+
+.hanafuda .c-tbl th:last-child, .nogizaka .c-tbl th:nth-child(2) {
+  position: relative;
+}
+
+.hanafuda .c-tbl th:last-child .sort, .nogizaka .c-tbl th:nth-child(2) .sort {
+  position: absolute;
+  right: 65px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.c-tbl th .sort span {
+  font-size: 12px;
+  cursor: pointer;
+  transition: all .3s;
+  margin: 0 5px;
+}
+
+.c-tbl th .c-ascend:hover {
+  color: #f3482e;
+}
+
+.c-tbl th .c-descend:hover {
+  color: #2e70f3;
+}
+
+.c-tbl td {
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid rgb(29, 29, 29);
+}
+
+#tbl {
+  margin: 0 auto 100px;
+}
+
+form select {
+  padding-left: 15px;
+  letter-spacing: 0.05em;
+}
+
+#tBody tr.hidden {
+  display: none;
+}
+
+#msg {
+  display: none;
+}
+
+#msg.active {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 auto 50px;
+}
+
+.btnArea {
+  text-align: center;
+}
+#reset {
+  width: 350px;
+  margin: 0 auto;
+  border: 3px solid rgb(29, 29, 29);
+  height: 60px;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  background-color: #f3482e;
+  transition: all .3s;
+}
+
+#reset:hover {
+  background-color: #8accda;
+}
+
+
+/* js版 */
+#nogiTbl {
+  margin: 0 auto 100px;
+}
+
+#nogiMsg {
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+.nogizaka {
+  background-color: #d8c5e8;
+}

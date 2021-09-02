@@ -12,6 +12,7 @@ body, html {
 
 body {
   color: #333;
+  background-color: #8accda;
   font-family: "Noto Sans JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", "Meiryo", "Yu Gothic", "YuGothic", "Helvetica Neue", "Helvetica", "sans-serif";
 }
 
@@ -66,32 +67,33 @@ h1 {
   padding: 20px 0;
   width: 30%;
   text-align: center;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
 }
 
-.hanafuda .c-tbl th:last-child, .nogizaka .c-tbl th:nth-child(2) {
+.hanafuda .c-tbl th, .nogizaka .c-tbl th:nth-child(2) {
   position: relative;
 }
 
-.hanafuda .c-tbl th:last-child .sort, .nogizaka .c-tbl th:nth-child(2) .sort {
+.hanafuda .c-tbl th .sort, .nogizaka .c-tbl th:nth-child(2) .sort {
   position: absolute;
   right: 65px;
   top: 50%;
   transform: translateY(-50%);
-  cursor: pointer;
 }
 
 .c-tbl th .sort span {
   font-size: 12px;
-  cursor: pointer;
   transition: all .3s;
   margin: 0 5px;
 }
 
-.c-tbl th .c-ascend:hover {
+.c-tbl th .c-ascend.change{
   color: #f3482e;
 }
 
-.c-tbl th .c-descend:hover {
+.c-tbl th .c-descend.change {
   color: #2e70f3;
 }
 
@@ -99,6 +101,7 @@ h1 {
   text-align: center;
   padding: 20px 0;
   border-top: 1px solid rgb(29, 29, 29);
+  letter-spacing: 0.08em;
 }
 
 #tbl {
@@ -138,6 +141,7 @@ form select {
 .btnArea {
   text-align: center;
 }
+
 #reset {
   width: 400px;
   margin: 0 auto;
@@ -199,7 +203,7 @@ form select {
     margin: 0 auto 30px;
   }
 
-  .hanafuda .c-tbl th:last-child .sort, .nogizaka .c-tbl th:nth-child(2) .sort {
+  .hanafuda .c-tbl th .sort, .nogizaka .c-tbl th:nth-child(2) .sort {
     right: 1%;
     display: flex;
     flex-wrap: wrap;

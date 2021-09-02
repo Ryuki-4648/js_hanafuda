@@ -1,4 +1,4 @@
-
+// ■ 課題: データの取得
 $.ajax({
     url: "hanafuda.json",
     type: "GET",
@@ -23,7 +23,6 @@ $.ajax({
 
     // ■ 課題: セレクトボックス
     $('#select01, #select02').on('change', function(){
-      // 選択した値を取得
       var select01 = $('#select01 option:selected').text();
       var value01 = $('#select01').val();
       var select02 = $('#select02 option:selected').text();
@@ -51,6 +50,7 @@ $.ajax({
         }
       });
 
+      // 該当するものがない場合
       var hidden = $('#tBody tr.hidden');
       if ( hidden.length == data.items.length ) {
         $('#msg').addClass('show');
@@ -64,11 +64,58 @@ $.ajax({
 
 
     // ■ 課題: ソート処理
-    $('#ascend').on('click', function(){
-      var arr = $('#tBody tr').sort(function(a, b){
-        var str01 = $(a).find();
-      });
+    $('#tbl th').on('click', function(){
+      var sortClass = $(this).attr('sort');
+      //console.log(sortClass);
+      var sortFlg = 'asc';
+
+      //$('#tbl thread tr span').text('');
+      $('#tbl thread tr span').attr('sort', '');
+
+      if( sortClass == 'asc' || sortClass != '' ) {
+        $(this).find('span').attr('sort', 'desc');
+        sortFlg == 'desc';
+      } else if ( sortClass == 'desc') {
+        $(this).find('span').attr('sort', 'asc');
+        sortFlg == 'asc';
+      }
+
+      var element = $(this).attr('id'); // thのid="値"を取得
+      sortFunc(element, sortFlg); // 関数の実行
     });
+
+    function sortFunc(element, sortFlg) {
+      var arr = $('#tBody tr').sort(function(a, b){
+        if ($.isNumeric($(a).find('td').eq(element).text())) {
+          var a_num = Number($(a).find('td').eq(element).text());
+          var b_num = Number($(a).find('td').eq(element).text());
+
+          if(sortFlg == "desc") {
+            // 降順
+            return b_num - a_num;
+          } else {
+            // 昇順
+            return a_num - b_num;
+          }
+        } else {
+          // ソート対象が数値以外の場合
+        var sortNum = 1;
+        if($(a).find("td").eq(element).text() 
+            > $(b).find("td").eq(element).text()) {
+          sortNum = 1;
+        } else {
+          sortNum = -1;
+        }
+        if(sortFlg == "desc") {
+          // 降順
+          sortNum *= (-1) ;
+        }
+
+        return sortNum;
+        }
+      });
+      $("table tbody").html(arr);
+    }
   })
 
   // ----- 失敗した場合 ----- //

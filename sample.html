@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>sum price</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </head>
+
+  <style>
+    body {
+      background-color: #a3d5d3;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      width: 450px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    table, input {
+    margin: 5px;
+    }
+
+    input[type=text] {
+    width: 120px;
+    }
+
+    table,tr,th,td {
+      font-size: 20px;
+      width: 70%;
+      list-style-type: none;
+      border-radius: 3px;
+      border: 1px solid #000;
+      padding: 5px;
+    }
+
+    td {
+      background: #eeeff0;
+      padding-left: 15px;
+    }
+
+    .display-none{
+        display:none;
+    }
+  </style>
+
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th id="0">商品<span id="sort0" sort=""></span></th>
+          <th id="1">価格<span id="sort1" sort=""></span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>キーボード</td>
+          <td class="price">15000</td>
+        </tr>
+        <tr>
+          <td>マウス</td>
+          <td class="price">6000</td>
+        </tr>
+        <tr>
+          <td>モニター</td>
+          <td class="price">50000</td>
+        </tr>
+        <tr>
+          <td>デスクトップPC</td>
+          <td class="price">200000</td>
+        </tr>
+        <tr>
+          <td>プリンター</td>
+          <td class="price">40000</td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <p class="sum_price">合計：0円</p>
+    </div>
+
+    
+  </body>
+
+  <script src="sample.js"></script>
+</html>

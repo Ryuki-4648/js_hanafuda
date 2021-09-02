@@ -65,7 +65,7 @@ $.ajax({
 
     // ■ 課題: ソート処理
     $('#tbl th').on('click', function(){
-      var sortClass = $(this).attr('sort');
+      var sortClass = $(this).find('span').attr('sort');
       //console.log(sortClass);
       var sortFlg = 'asc';
 
@@ -74,10 +74,14 @@ $.ajax({
 
       if( sortClass == 'asc' || sortClass != '' ) {
         $(this).find('span').attr('sort', 'desc');
+        $(this).find('.btn-ascend').addClass('change');
+        $(this).find('.btn-descend').removeClass('change');
         sortFlg == 'desc';
       } else if ( sortClass == 'desc') {
         $(this).find('span').attr('sort', 'asc');
         sortFlg == 'asc';
+        $(this).find('.btn-ascend').removeClass('change');
+        $(this).find('.btn-descend').addClass('change');
       }
 
       var element = $(this).attr('id'); // thのid="値"を取得

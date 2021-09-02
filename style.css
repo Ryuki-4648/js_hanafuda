@@ -70,6 +70,11 @@ h1 {
   font-size: 18px;
   letter-spacing: 0.08em;
   cursor: pointer;
+  transition: all .3s;
+}
+
+.c-tbl th:hover {
+  background-color: #87c0cc;
 }
 
 .hanafuda .c-tbl th, .nogizaka .c-tbl th:nth-child(2) {
@@ -89,12 +94,12 @@ h1 {
   margin: 0 5px;
 }
 
-.c-tbl th .btn-ascend.change{
+.c-tbl th .btn-ascend.change, .c-tbl th .c-ascend:hover {
   color: #f3482e;
 }
 
-.c-tbl th .btn-descend.change {
-  color: #2e70f3;
+.c-tbl th .btn-descend.change, .c-tbl th .c-descend:hover {
+  color: #0b5cb8;
 }
 
 .c-tbl td {

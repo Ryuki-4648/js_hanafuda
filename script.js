@@ -64,12 +64,12 @@ $.ajax({
     });
 
 
-    // ■ 課題: ソート処理 参考： https://notepad-blog.com/content/127/
+    // ■ 課題: ソート処理 ( 参考： https://notepad-blog.com/content/127/ )
     $('#tbl th').on('click', function(){
       $(this).find('span').removeClass('change');
       var flg = $(this).find('p').attr('sort');
-      var elem = $(this).attr('id');
-      console.log(elem);
+      var index = $(this).attr('id');
+      //console.log(index);
 
       if( flg == 'asc') {
         $(this).find('p').attr('sort', 'desc');
@@ -77,65 +77,65 @@ $.ajax({
         flg == 'desc';
       } else if ( flg == 'desc' ) {
         $(this).find('p').attr('sort', 'asc');
-        flg == 'asc';
         $(this).find('.btn-descend').addClass('change');
+        flg == 'asc';
       }
 
-      sortFunc(elem, flg);
+      sortFunc(index, flg);
     });
 
-    function sortFunc(elem, flg) {
-      console.log(flg);
+    function sortFunc(index, flg) {
+      //console.log(flg);
       var arr = $('#tBody tr').sort(function(a, b){
 
-        // isNumeric: 指定した値が数値かどうかを判定
-        if ($.isNumeric($(a).find('td span').eq(elem).text())) {
-          console.log('数値のとき');
-          var aNum = Number($(a).find('td span').eq(elem).text());
-          var bNum = Number($(b).find('td span').eq(elem).text());
+        // isNumeric: 引数に指定した値が数値かどうかを判定
+        // eq(): インデックス番号からHTML要素を取得。eq(index)はthのid="数値"。
+        if ( $.isNumeric($(a).find('td span').eq(index).text()) ) {
+          // console.log('数値のとき');
 
-          if(flg == "desc") {
-            // 降順
+          // 文字列を数値に変換
+          var aNum = Number($(a).find('td span').eq(index).text());
+          var bNum = Number($(b).find('td span').eq(index).text());
+          //console.log(aNum);
+
+          // 数値を比較する場合は引き算
+          if( flg == "desc" ) {
             return bNum - aNum;
           } else {
-            // 昇順
             return aNum - bNum;
           }
+
         } else {
-          console.log('数値以外の時');
+          // console.log('数値以外の時');
           var sortNum = 1;
-          if($(a).find('td span').eq(elem).text() > $(b).find('td span').eq(elem).text()) {
+          if($(a).find('td span').eq(index).text() > $(b).find('td span').eq(index).text()) {
             sortNum = 1;
           } else {
             sortNum = -1;
           }
-          if( flg == '' || flg == "desc") {
-            // 降順
-            sortNum *= (-1) ;
+          if( flg == '' || flg == "desc" ) {
+            sortNum = -1;
           }
 
-        return sortNum;
+          return sortNum;
         }
       });
       $('#tBody').html(arr);
     }
     
+    // --------------- リセットボタン --------------- //
+    $('#reset').on('click', function(){
+      $('[name=select01]').prop("selectedIndex", 0);
+      $('[name=select02]').prop("selectedIndex", 0);
+      $('#tBody tr').removeClass('hidden');
+      $('#msg').removeClass('show');
+      $('#msg').text('');
+      $('#tbl th').find('span').removeClass('change');
+    });
+
   })
 
   // ----- 失敗した場合 ----- //
   .fail(function() {
     alert('取得できませんでした。');
-  });
-
-
-
-  
-  // --------------- リセットボタン --------------- //
-
-  $('#reset').on('click', function(){
-    $('[name=select01]').prop("selectedIndex", 0);
-    $('[name=select02]').prop("selectedIndex", 0);
-    $('#tBody tr').removeClass('hidden');
-    $('#msg').removeClass('show');
-    $('#msg').text('');
   });

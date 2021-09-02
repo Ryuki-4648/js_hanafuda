@@ -9,15 +9,15 @@ $.ajax({
   .done(function(data) {
     //console.log(data);
     //console.log(data.items.length);
-    console.log('データを取得できました。');
+    console.log('hanafuda.jsonのデータを取得できました。');
 
 
     // ■ 課題: テーブルに出力
     var tBody = $('#tBody');
     $.each(data.items, function(i, v){
-      var tdMonth= '<td id="month">' + v.month + '月' + '</td>';
-      var tdName = '<td id="name">' + v.name + '</td>';
-      var tdScore = '<td id="score">' + v.score + '点' + '</td>';
+      var tdMonth= '<td id="month">' + '<span>' + v.month + '</span>' + '月' + '</td>';
+      var tdName = '<td id="name">' + '<span>' + v.name + '</span>' + '</td>';
+      var tdScore = '<td id="score">' + '<span>' + v.score + '</span>' + '点' + '</td>';
       tBody.append('<tr>' + tdMonth + tdName + tdScore + '</tr>');
     });
 
@@ -64,64 +64,60 @@ $.ajax({
     });
 
 
-    // ■ 課題: ソート処理
-    // 参考： https://notepad-blog.com/content/127/
+    // ■ 課題: ソート処理 参考： https://notepad-blog.com/content/127/
     $('#tbl th').on('click', function(){
       $(this).find('span').removeClass('change');
-      var sortFlg= $(this).find('p').attr('sort');
-      //console.log(sortClass);
-      //var sortFlg = 'asc';
+      var flg = $(this).find('p').attr('sort');
+      var elem = $(this).attr('id');
+      console.log(elem);
 
-      //$('#tbl thread tr span').text('');
-      //$('#tbl thread tr p').text('');
-      //$('#tbl thread tr p').attr('sort', '');
-
-      if( sortFlg == 'asc' || sortFlg == '' ) {
+      if( flg == 'asc') {
         $(this).find('p').attr('sort', 'desc');
         $(this).find('.btn-ascend').addClass('change');
-        sortFlg == 'desc';
-      } else if ( sortFlg == 'desc' ) {
+        flg == 'desc';
+      } else if ( flg == 'desc' ) {
         $(this).find('p').attr('sort', 'asc');
-        sortFlg == 'asc';
+        flg == 'asc';
         $(this).find('.btn-descend').addClass('change');
       }
 
-      var element = $(this).attr('id'); // thのid="値"を取得
-      sortFunc(element, sortFlg); // 関数の実行
+      sortFunc(elem, flg);
     });
 
-    function sortFunc(element, sortFlg) {
-      console.log(sortFlg);
+    function sortFunc(elem, flg) {
+      console.log(flg);
       var arr = $('#tBody tr').sort(function(a, b){
-        if ($.isNumeric($(a).find('td').eq(element).text())) {
-          // ソート対象：数値
-          var a_num = Number($(a).find('td').eq(element).text());
-          var b_num = Number($(b).find('td').eq(element).text());
 
-          if(sortFlg == "desc") {
+        // isNumeric: 指定した値が数値かどうかを判定
+        if ($.isNumeric($(a).find('td span').eq(elem).text())) {
+          console.log('数値のとき');
+          var aNum = Number($(a).find('td span').eq(elem).text());
+          var bNum = Number($(b).find('td span').eq(elem).text());
+
+          if(flg == "desc") {
             // 降順
-            return b_num - a_num;
+            return bNum - aNum;
           } else {
             // 昇順
-            return a_num - b_num;
+            return aNum - bNum;
           }
         } else {
-        // ソート対象：数値以外
-        var sortNum = 1;
-        if($(a).find('td').eq(element).text() > $(b).find('td').eq(element).text()) {
-          sortNum = 1;
-        } else {
-          sortNum = -1;
-        }
-        if( sortFlg == '' || sortFlg == "desc") {
-          // 降順
-          sortNum *= (-1) ;
-        }
+          console.log('数値以外の時');
+          var sortNum = 1;
+          if($(a).find('td span').eq(elem).text() > $(b).find('td span').eq(elem).text()) {
+            sortNum = 1;
+          } else {
+            sortNum = -1;
+          }
+          if( flg == '' || flg == "desc") {
+            // 降順
+            sortNum *= (-1) ;
+          }
 
         return sortNum;
         }
       });
-      $("table tbody").html(arr);
+      $('#tBody').html(arr);
     }
     
   })

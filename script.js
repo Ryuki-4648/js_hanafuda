@@ -9,6 +9,7 @@ $.ajax({
   .done(function(data) {
     //console.log(data);
     //console.log(data.items.length);
+    console.log('データを取得できました。');
 
 
     // ■ 課題: テーブルに出力
@@ -64,23 +65,24 @@ $.ajax({
 
 
     // ■ 課題: ソート処理
+    // 参考： https://notepad-blog.com/content/127/
     $('#tbl th').on('click', function(){
-      var sortClass = $(this).find('span').attr('sort');
+      $(this).find('span').removeClass('change');
+      var sortFlg= $(this).find('p').attr('sort');
       //console.log(sortClass);
-      var sortFlg = 'asc';
+      //var sortFlg = 'asc';
 
       //$('#tbl thread tr span').text('');
-      $('#tbl thread tr span').attr('sort', '');
+      //$('#tbl thread tr p').text('');
+      //$('#tbl thread tr p').attr('sort', '');
 
-      if( sortClass == 'asc' || sortClass != '' ) {
-        $(this).find('span').attr('sort', 'desc');
+      if( sortFlg == 'asc' || sortFlg == '' ) {
+        $(this).find('p').attr('sort', 'desc');
         $(this).find('.btn-ascend').addClass('change');
-        $(this).find('.btn-descend').removeClass('change');
         sortFlg == 'desc';
-      } else if ( sortClass == 'desc') {
-        $(this).find('span').attr('sort', 'asc');
+      } else if ( sortFlg == 'desc' ) {
+        $(this).find('p').attr('sort', 'asc');
         sortFlg == 'asc';
-        $(this).find('.btn-ascend').removeClass('change');
         $(this).find('.btn-descend').addClass('change');
       }
 
@@ -89,10 +91,12 @@ $.ajax({
     });
 
     function sortFunc(element, sortFlg) {
+      console.log(sortFlg);
       var arr = $('#tBody tr').sort(function(a, b){
         if ($.isNumeric($(a).find('td').eq(element).text())) {
+          // ソート対象：数値
           var a_num = Number($(a).find('td').eq(element).text());
-          var b_num = Number($(a).find('td').eq(element).text());
+          var b_num = Number($(b).find('td').eq(element).text());
 
           if(sortFlg == "desc") {
             // 降順
@@ -102,15 +106,14 @@ $.ajax({
             return a_num - b_num;
           }
         } else {
-          // ソート対象が数値以外の場合
+        // ソート対象：数値以外
         var sortNum = 1;
-        if($(a).find("td").eq(element).text() 
-            > $(b).find("td").eq(element).text()) {
+        if($(a).find('td').eq(element).text() > $(b).find('td').eq(element).text()) {
           sortNum = 1;
         } else {
           sortNum = -1;
         }
-        if(sortFlg == "desc") {
+        if( sortFlg == '' || sortFlg == "desc") {
           // 降順
           sortNum *= (-1) ;
         }
@@ -120,6 +123,7 @@ $.ajax({
       });
       $("table tbody").html(arr);
     }
+    
   })
 
   // ----- 失敗した場合 ----- //

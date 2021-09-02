@@ -80,4 +80,4 @@ const hanafuda = {
 
 var json = JSON.stringify(hanafuda);
 console.log(json);
-console.log(typeof json); // string(文字列)に変換される
+//console.log(typeof json); // string(文字列)に変換される

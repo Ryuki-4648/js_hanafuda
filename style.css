@@ -89,11 +89,11 @@ h1 {
   margin: 0 5px;
 }
 
-.c-tbl th .c-ascend.change{
+.c-tbl th .btn-ascend.change{
   color: #f3482e;
 }
 
-.c-tbl th .c-descend.change {
+.c-tbl th .btn-descend.change {
   color: #2e70f3;
 }
 

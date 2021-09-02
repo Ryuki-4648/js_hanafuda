@@ -4,9 +4,12 @@ $(function(){
 
   // カラムのクリックイベント
   $("th").click(function(){
-    // ★span要素の独自属性（sort）の値を取得
+    // ★attrメソッド：span要素の独自属性（sort）の値を取得
     var sortClass = $(this).find("span").attr("sort");
     var sortFlag = "asc";
+
+    // attrメソッド：属性の値を取得、変更できる。id 属性や class 属性を取得・変更・設定できる。
+
     // 初期化
     $("table thead tr span").text("");
     $("table thead tr span").attr("sort", "");
@@ -25,6 +28,8 @@ $(function(){
     var element = $(this).attr("id");
     sort(element, sortFlag);
   });
+
+  // isBlank:指定された値がnullまたは空文字でないことをチェックする関数
 
 
   /******** 共通関数 ********/
@@ -63,6 +68,11 @@ $(function(){
     // ★html()要素を置き換える
     $("table tbody").html(arr);
   }
+
+  // isNumeric:式を数値として評価できるかどうかを示すブール型 (Boolean) の値を返す
+  
+  // eq:エレメントの集合から、指定したポジションのエレメントだけを取り出す。
+  // 複数のHTML要素の中からインデックス番号を指定することで特定の要素だけを取得できます。
 
   function sum(){
     // 表の金額を取得する(tdの奇数列を取得)

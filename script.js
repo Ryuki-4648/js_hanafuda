@@ -127,7 +127,7 @@ $.ajax({
       $('#tBody').html(arr);
     }
     
-    // --------------- 選択肢 リセットボタン --------------- //
+    // --------------- リセットボタン --------------- //
     $('#reset').on('click', function(){
       $('[name=select01]').prop("selectedIndex", 0);
       $('[name=select02]').prop("selectedIndex", 0);
@@ -136,6 +136,9 @@ $.ajax({
       $('#msg').text('');
     });
 
+    $('#sortReset').on('click', function(){
+      location.reload();
+    });
   })
 
   // ----- データの取得 失敗した場合 ----- //

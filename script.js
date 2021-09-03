@@ -5,7 +5,7 @@ $.ajax({
     dataType: "json",
   })
 
-  // ----- 成功した場合 ----- //
+  // ----- データの取得 成功した場合 ----- //
   .done(function(data) {
     //console.log(data);
     //console.log(data.items.length);
@@ -35,21 +35,22 @@ $.ajax({
           return true;
         }
         
+        // #tBody trの中のテキストを取得
         var text = $(this).text();
-        if (text.indexOf(select01) != -1) {
-          if (text.indexOf(select02) != -1) {
+
+        if (text.indexOf(select01) > -1) {
+          if (text.indexOf(select02) > -1) {
             $(this).removeClass('hidden');
           } else {
             $(this).addClass('hidden');
           }
         } else {
-          if (text.indexOf(select02) != -1) {
-            $(this).addClass('hidden');
-          } else {
-            $(this).addClass('hidden');
-          }
+          $(this).addClass('hidden');
         }
       });
+      // indeOf: 値が見つからなければ-1を返す
+      // 文字列があるとき "文字列".indexOf("文字列") > -1 ⇔ "文字列".indexOf("文字列") != -1
+
 
       // 該当するものがない場合
       var hidden = $('#tBody tr.hidden');
@@ -71,6 +72,7 @@ $.ajax({
       var index = $(this).attr('id');
       //console.log(index);
 
+      // 昇順・降順ボタン
       if( flg == 'asc') {
         $(this).find('p').attr('sort', 'desc');
         $(this).find('.btn-ascend').addClass('change');
@@ -84,8 +86,8 @@ $.ajax({
       sortFunc(index, flg);
     });
 
+    // 並び替え
     function sortFunc(index, flg) {
-      //console.log(flg);
       var arr = $('#tBody tr').sort(function(a, b){
 
         // isNumeric: 引数に指定した値が数値かどうかを判定
@@ -98,7 +100,7 @@ $.ajax({
           var bNum = Number($(b).find('td span').eq(index).text());
           //console.log(aNum);
 
-          // 数値を比較する場合は引き算
+          // 数値の比較: 引き算
           if( flg == "desc" ) {
             return bNum - aNum;
           } else {
@@ -107,7 +109,7 @@ $.ajax({
 
         } else {
           // console.log('数値以外の時');
-          var sortNum = 1;
+          var sortNum;
           if($(a).find('td span').eq(index).text() > $(b).find('td span').eq(index).text()) {
             sortNum = 1;
           } else {
@@ -120,22 +122,23 @@ $.ajax({
           return sortNum;
         }
       });
+
+      // html要素(#tBody)の書き換え
       $('#tBody').html(arr);
     }
     
-    // --------------- リセットボタン --------------- //
+    // --------------- 選択肢 リセットボタン --------------- //
     $('#reset').on('click', function(){
       $('[name=select01]').prop("selectedIndex", 0);
       $('[name=select02]').prop("selectedIndex", 0);
       $('#tBody tr').removeClass('hidden');
       $('#msg').removeClass('show');
       $('#msg').text('');
-      $('#tbl th').find('span').removeClass('change');
     });
 
   })
 
-  // ----- 失敗した場合 ----- //
+  // ----- データの取得 失敗した場合 ----- //
   .fail(function() {
-    alert('取得できませんでした。');
+    alert('データを取得できませんでした。');
   });

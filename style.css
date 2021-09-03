@@ -23,6 +23,7 @@ body {
 
 .hanafuda {
   background-color: #8accda;
+  position: relative;
 }
 
 h1 {
@@ -147,9 +148,6 @@ form select {
   text-align: center;
 }
 
-.btnArea:first-child {
-  margin: 0 auto 30px;
-}
 
 .c-reset {
   width: 400px;
@@ -166,6 +164,7 @@ form select {
 
 #reset {
   background-color: #f3482e;
+  margin: 0 auto 30px;
 }
 
 #reset:hover {
@@ -195,6 +194,31 @@ form select {
   background-color: #d8c5e8;
 }
 
+.card {
+  position: absolute;
+  right: 50px;
+  bottom: 20px;
+  background-color: #f3482e;
+  border: 3px solid #333;
+  width: 40px;
+  height: 80px;
+  transform: rotate(15deg);
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.card:hover {
+  transform: rotate(20deg);
+}
+
+.card .moon {
+  background-color: #fafafa;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-top :10px;
+  margin-left: 5px;
+}
 
 @media screen and (max-width: 1024px) {
   h1 {
@@ -202,7 +226,7 @@ form select {
   }
 
   .content {
-    padding: 40px 0;
+    padding: 50px 0;
   }
 
   .inner {
@@ -236,7 +260,18 @@ form select {
     margin: 0 auto 50px;
   }
 
-  #reset {
+  .c-reset {
     width: 100%;
+  }
+
+  .card {
+    bottom: -60px;
+    width: 30px;
+    height: 70px;
+  }
+
+  .card .moon {
+    width: 20px;
+    height: 20px;
   }
 }

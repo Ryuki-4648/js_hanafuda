@@ -139,6 +139,33 @@ $.ajax({
     $('#sortReset').on('click', function(){
       location.reload();
     });
+
+    // --------------- シャッフルボタン --------------- //
+    $('#random').on('click',function(){
+      var tdElem = $('#tBody tr');
+      var td_array = [];
+    
+      /* td要素を配列に取得 */
+      tdElem.each (function() {
+        td_array.push($(this).html());
+      });
+      console.log(tdElem);
+    
+      /* 配列をシャッフルする */
+      var n = td_array.length;
+      for(var i = n - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = td_array[i];
+        td_array[i] = td_array[j];
+        td_array[j] = tmp;
+      }
+    
+      /* td要素に配列の値を戻す */
+      tdElem.each (function(i) {
+        $(this).html(td_array[i]);
+        i++;
+      });
+    });
   })
 
   // ----- データの取得 失敗した場合 ----- //

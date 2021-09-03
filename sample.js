@@ -7,6 +7,7 @@ $(function(){
     // ★attrメソッド：span要素の独自属性（sort）の値を取得
     var sortClass = $(this).find("span").attr("sort");
     var sortFlag = "asc";
+    //console.log(sortClass);
 
     // attrメソッド：属性の値を取得、変更できる。id 属性や class 属性を取得・変更・設定できる。
 
@@ -26,6 +27,7 @@ $(function(){
     }
 
     var element = $(this).attr("id");
+    console.log(element);
     sort(element, sortFlag);
   });
 
@@ -34,6 +36,7 @@ $(function(){
 
   /******** 共通関数 ********/
   function sort(element, sortFlag) {
+    console.log(sortFlag);
     // ★sort()で前後の要素を比較して並び変える。※対象が文字か数値で処理を変更
     var arr = $("table tbody tr").sort(function(a, b) {
       if ($.isNumeric($(a).find("td").eq(element).text())) {
@@ -60,6 +63,7 @@ $(function(){
         if(isBlank(sortFlag) || sortFlag == "desc") {
           // 降順
           sortNum *= (-1) ;
+          // *=: 変数に右のオペランドの値を乗算し、結果を変数に代入
         }
 
         return sortNum;
@@ -70,7 +74,7 @@ $(function(){
   }
 
   // isNumeric:式を数値として評価できるかどうかを示すブール型 (Boolean) の値を返す
-  
+
   // eq:エレメントの集合から、指定したポジションのエレメントだけを取り出す。
   // 複数のHTML要素の中からインデックス番号を指定することで特定の要素だけを取得できます。
 
